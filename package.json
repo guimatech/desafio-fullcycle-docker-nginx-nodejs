@@ -1,0 +1,16 @@
+{
+  "name": "desafio-fullcycle-docker-nginx-nodejs",
+  "version": "1.0.0",
+  "description": "Aplicação que cadastra e consulta informações num banco de dados",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker compose up -d && node index.js"
+  },
+  "author": "Lucas dos Santos Guimarães",
+  "license": "MIT",
+  "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "express": "^4.21.2",
+    "mysql": "^2.18.1"
+  }
+}

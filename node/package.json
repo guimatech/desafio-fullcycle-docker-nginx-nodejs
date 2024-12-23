@@ -4,7 +4,7 @@
   "description": "Aplicação que cadastra e consulta informações num banco de dados",
   "main": "index.js",
   "scripts": {
-    "start": "docker compose up -d && node index.js"
+    "start": "node index.js"
   },
   "author": "Lucas dos Santos Guimarães",
   "license": "MIT",

@@ -3,9 +3,9 @@ const mysql = require('mysql');
 const { faker } = require('@faker-js/faker');
 
 const app = express();
-const port = 8080;
+const port = 3000;
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: 'mysql',
   user: 'me',
   password: 'secret',
   database: 'my_db',
@@ -17,7 +17,6 @@ connection.connect();
 connection.query('CREATE TABLE IF NOT EXISTS people (`name` VARCHAR(100) NOT NULL)', 
   function (error, results, fields) {
     if (error) throw error;
-    console.log('Tabela criada!');
   }
 );
 
@@ -25,7 +24,6 @@ app.get('/', (req, res) => {
   const person = { name: faker.person.fullName() };
   connection.query('INSERT INTO people SET ?', person, function (error, results, fields) {
     if (error) throw error;
-    console.log('Dados inseridos!');
   });
 
   connection.query('SELECT name FROM people', function (error, results, fields) {

@@ -1,4 +1,24 @@
 services:
+  app:
+    build: ./node/
+    # entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s -wait tcp://nginx:8080 -timeout 20s
+    volumes:
+      - ./node:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - nginx
+    networks:
+      - node-network
+
+  nginx:
+    build: ./nginx/
+    ports:
+      - "8080:80"
+    networks:
+      - node-network
+
   mysql:
     image: mysql:5.7
     environment:
@@ -8,3 +28,10 @@ services:
       MYSQL_PASSWORD: secret
     ports:
       - "3306:3306"
+    networks:
+      - node-network
+
+
+networks:
+  node-network:
+    driver: bridge
